@@ -1,0 +1,25 @@
+{% extends "layout.html" %}
+{% block head %}{{ super() }}{% endblock %}
+{% block title %}monke login{% endblock %}
+{% block header %}{{ super() }}{% endblock %}
+{% block content %}
+
+  <div class="row justify-content-center align-items-center">
+    <div class="col-12 mt-3 mb-3 d-flex justify-content-center">
+      welcome to the monke login!!<BR><BR>
+
+      enter your login details here you dirty ape!!
+
+      <form action="" method = "POST">
+        <p>email <input type = "email" name = "email" /></p>
+        <p>password <input type = "password" name = "password" /></p>
+        <p> submit <input type = "submit" value = "Submit" /></p>
+      </form>
+
+      <h3>Dont Have an account??</h3>
+      <h3><a href = "{{ url_for('aperegister') }}">Register Here</a></h3>
+    </div>
+  </div>
+
+{% endblock content %}
+{% block footer %}this footer is better{% endblock %}

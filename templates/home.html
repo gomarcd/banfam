@@ -1,0 +1,72 @@
+{% extends "layout.html" %}
+
+{% block title %}monkeh{% endblock %}
+{% block header %}{{ super() }}{% endblock %}
+{% block content %}
+
+<script>
+  $(function(){
+    window.setInterval(function(){
+      refreshValues();
+    },5000)
+    function refreshValues(){
+      $.ajax({
+        url: "/update_balances",
+        type: "GET",
+        dataType: "json",
+        success: function(data){
+          if($(document.getElementById("update_names")).length > 0) {
+            document.getElementById("update_names").innerHTML = "",
+            document.getElementById("update_balances").innerHTML = "",
+            document.getElementById("monke").innerHTML = data[2],
+            $.each(data[0], function(key, value) {
+              document.getElementById("update_names").innerHTML += key + "<BR>",
+              document.getElementById("update_balances").innerHTML += value + "<BR>";
+            });
+          }
+          if($(document.getElementById("ban_price")).length > 0) {
+            document.getElementById("ban_price").innerHTML = data[1]['ban_cad'],
+            document.getElementById("btc_price").innerHTML = data[1]['ban_btc'],
+            document.getElementById("doge_price").innerHTML = data[1]['ban_doge'];
+          }
+        }
+      });
+    }
+  });
+</script>
+
+  <div class="row justify-content-center align-items-center">
+    <div class="col mt-3 mb-2 d-flex justify-content-center">
+      <table style="width:80%" class="table table-sm table-dark table-borderless">
+        <tr>
+          <td width="25%">
+            <span id="update_names">
+              {% for i in balances %}
+                {{ i }}<BR>
+              {% endfor %}
+            </span>
+          </td>
+          <td width="75%" align="right">
+            <div id="update_balances">
+              {% for i in balances %}
+                loading...<BR>
+              {% endfor %}
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+
+    <div class="col-4 mb-2 d-flex justify-content-center">
+      <div id="monke">
+        <img src="https://monkey.banano.cc/api/v1/monkey/{{ monke }}?format=png&size=256&background=false" class="img-fluid">
+      </div>
+    </div>
+
+    <div class="col-sm-4 mb-4 d-flex justify-content-center">
+      <span>Join the <a href="https://banano.cc" target="_blank">potassium revolution</a>!</span>
+    </div>
+  </div>
+
+{% endblock content %}
+{% block footer %}{{ super() }}{% endblock %}

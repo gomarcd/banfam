@@ -1,0 +1,15 @@
+{% extends "layout.html" %}
+{% block head %}{{ super() }}{% endblock %}
+{% block title %}dirty ape stats{% endblock %}
+{% block header %}{{ super() }}{% endblock %}
+{% block content %}
+
+  <div class="row justify-content-center align-items-center">
+    <div class="col-12 mt-3 mb-3 d-flex justify-content-center">
+    Hi {{ current_user.username }}, you dirty ass ape<BR><BR>
+    <a href="{{ url_for('logmonkeout')}}">Logout Here</a>
+    </div>
+  </div>
+
+{% endblock content %}
+{% block footer %}this footer is better{% endblock %}

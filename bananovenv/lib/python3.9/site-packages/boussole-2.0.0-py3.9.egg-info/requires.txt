@@ -1,0 +1,15 @@
+click>=5.1
+watchdog>=0.8.3
+libsass>=0.19.4
+pyaml
+colorama
+colorlog
+
+[dev]
+flake8
+pytest
+Sphinx
+sphinx-rtd-theme
+livereload
+twine
+packaging
